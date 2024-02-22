@@ -425,7 +425,7 @@ async function processMessage({ data, device } = {}) {
               },
               {
                 title: "Help Line",
-                id: "a4",
+                id: "4",
                 description: "Get in touch with a representative",
               },
             ],
@@ -434,9 +434,90 @@ async function processMessage({ data, device } = {}) {
       },
     });
   }
-  if (state[chat.id] === "Displayed Main Menu") {
+  if (state[chat.id] === "Displayed Main Menu" && body === "1A") {
+    state[chat.id] = "Choose Service";
+    return await reply({
+      list: {
+        description: "Select which service you are interested in",
+        button: "Tap to select",
+        title: "We offer the following services",
+        sections: [
+          {
+            title: "Select an option",
+            rows: [
+              {
+                title: "Land Transactions",
+                id: "1",
+              },
+              {
+                title: "Contract Review",
+                id: "2",
+              },
+              {
+                title: "Family Law",
+                id: "3",
+              },
+            ],
+          },
+        ],
+      },
+    });
+  }
+  if (state[chat.id] === "Displayed Main Menu" && body === "1B") {
+    state[chat.id] = "Consultation";
+    // TODO: add call to calendarly for fetching available time slots
+    return await reply({
+      list: {
+        description: "Choose a time slot",
+        button: "Tap to select",
+        title: "We are open from Monday to Friday",
+        sections: [
+          {
+            title: "Select an option",
+            rows: [
+              {
+                title: "9:00AM to 9:30AM",
+                id: "1",
+              },
+              {
+                title: "10:00AM to 10:30AM",
+                id: "2",
+              },
+              {
+                title: "12:00PM to 12:30PM",
+                id: "3",
+              },
+              {
+                title: "1:00PM to 1:30PM",
+                id: "4",
+              },
+            ],
+          },
+        ],
+      },
+    });
+  }
+  if (state[chat.id] === "Displayed Main Menu" && body === "1C") {
     state[chat.id] = null;
-    return await reply({ message: `Your selection is ${body}` });
+    return await reply({
+      message: "Wakili Law Firm is a reputable law firm that started in 2024. We specialize in all areas of Law. Book a consultation today!",
+    });
+  }
+  if (state[chat.id] === "Displayed Main Menu" && body === "1D") {
+    state[chat.id] = null;
+    return await reply({
+      message: `Thanks for reaching out and wanting to talk to someone on our team. Our hours of operation are Monday to Saturday 8:00AM to 5:00PM. 
+      Someone from our team will get back to you as soon as possible :)`
+    });
+  }
+
+  if (state[chat.id] === "Consultation") {
+    state[chat.id] = null;
+    // TODO: map the specific timeslot
+    return await reply({
+      message:
+        "Your consultation has been scheduled. You will receive a call from our lawyer shortly.",
+    });
   }
 }
 
