@@ -32,13 +32,14 @@ module.exports = {
   // If no webhook is specified, the chatbot will autoamtically create an Ngrok tunnel
   // and register it as the webhook URL.
   // IMPORTANT: in order to use Ngrok tunnels, you need to sign up for free, see the option below.
-  webhookUrl: env.WEBHOOK_URL || "https://be5b-41-80-115-9.ngrok-free.app",
+  webhookUrl: env.WEBHOOK_URL || "https://1802-41-80-115-9.ngrok-free.app",
 
   // Ngrok tunnel authentication token.
   // Required if webhook URL is not provided.
   // sign up for free and get one: https://ngrok.com/signup
   // Learn how to obtain the auth token: https://ngrok.com/docs/agent/#authtokens
-  ngrokToken: env.NGROK_TOKEN || '2cePwbmuljtjBcdcn5KbRFLMj6p_yTSmVVQnoggRzLVht2tm',
+  ngrokToken:
+    env.NGROK_TOKEN || "2cePwbmuljtjBcdcn5KbRFLMj6p_yTSmVVQnoggRzLVht2tm",
 
   // Set one or multiple labels on chatbot-managed chats
   setLabelsOnBotChats: ["bot"],
